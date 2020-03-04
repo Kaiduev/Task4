@@ -14,18 +14,9 @@ class Category(models.Model):
 
 
 class Branch(models.Model):
-    latitude = 42.8667
-    longitude = 74.566742
-    address = 'Бишкек, Байтик баатыра 70'
-    BRANCH_CHOISES = [
-        (latitude, 'Latitude'),
-        (longitude, 'Longitude'),
-        (address, 'Address'),
-    ]
-
-    class Meta:
-        verbose_name = "Branch"
-        verbose_name_plural = "Branches"
+    latitude = models.CharField(max_length=50, null=True)
+    longitude = models.CharField(max_length=50, null=True)
+    address = models.CharField(max_length=100, null=True)
 
     def __str__(self):
         return self.address
@@ -55,9 +46,8 @@ class Course(models.Model):
     contacts = models.CharField(max_length=50,
                                 choices=Contact.CONTACT_CHOISES,
                                 default=Contact.phone)
-    branches = models.CharField(max_length=300,
-                                choices=Branch.BRANCH_CHOISES,
-                                default=Branch.address)
+    branches = models.ForeignKey(Branch, verbose_name="branches", on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
+
