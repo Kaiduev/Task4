@@ -5,9 +5,9 @@ from .models import *
 class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
-        fields = ['id', 'name', 'description',
-                  'category', 'logo',
-                  'contacts', 'branches']
+        fields = ['id', 'name',
+                  'description',
+                  'category', 'logo']
 
     def create(self, validated_data):
         return Course.objects.create(**validated_data)
@@ -25,7 +25,16 @@ class CategorySerializer(serializers.ModelSerializer):
 class BranchSerializer(serializers.ModelSerializer):
     class Meta:
         model = Branch
-        fields = ['id', 'latitude', 'longitude', 'address']
+        fields = ['id', 'course', 'latitude', 'longitude', 'address']
 
     def create(self, validated_data):
-        return  Branch.objects.create(**validated_data)
+        return Branch.objects.create(**validated_data)
+
+
+class ContactSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contact
+        fields = ['id', 'course', 'content_type', 'value']
+
+    def create(self, validated_data):
+        return Contact.objects.create(**validated_data)
