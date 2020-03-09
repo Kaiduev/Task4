@@ -33,7 +33,7 @@ class Contact(models.Model):
         (facebook, 'Facebook'),
         (email, 'Email'),
     ]
-    course = models.ForeignKey(Course, related_name='contacts', on_delete=models.CASCADE)
+    course = models.OneToOneField(Course, related_name='contacts', on_delete=models.CASCADE, unique=True)
     content_type = models.CharField(choices=CONTACT_CHOISES, max_length=150)
     value = models.CharField(max_length=150, null=False)
 
@@ -42,11 +42,11 @@ class Contact(models.Model):
 
 
 class Branch(models.Model):
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course = models.OneToOneField(Course, related_name='branches', on_delete=models.CASCADE, unique=True)
     latitude = models.CharField(max_length=50, null=True)
     longitude = models.CharField(max_length=50, null=True)
-    address = models.CharField(max_length=100, null=True, unique=True)
+    address = models.CharField(max_length=100, null=True)
 
     def __str__(self):
-        return self.course
+        return self.address
 
