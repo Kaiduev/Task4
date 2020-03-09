@@ -123,7 +123,7 @@ class BranchView(APIView):
         serializer = serializers.BranchSerializer(data=request.data)
         if serializer.is_valid():
             saved_data = serializer.save()
-            return Response({"success": "Branch for course '{}' created successfully".format(saved_data.name)})
+            return Response({"success": "Branch for course '{}' created successfully".format(saved_data.course)})
         else:
             return Response(serializer.errors,
                             status=status.HTTP_400_BAD_REQUEST)
