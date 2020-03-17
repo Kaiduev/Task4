@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'jlr(h7)d+%yf9tr^yu80yri_8!c-_=*gz*w^d8frc^gp345=%v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['courses-neobis.herokuapp.com/', '127.0.0.1']
 
 
 # Application definition
@@ -75,10 +75,21 @@ WSGI_APPLICATION = 'course_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'course',
+        'USER': 'tomas',
+        'PASSWORD': 'tomas123',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
