@@ -44,4 +44,4 @@ For run the server use that command
 + SQLite3
 
 ## Authors
-+ Kaiduev Baktygul
+Api documentation https://course16.docs.apiary.io/#
